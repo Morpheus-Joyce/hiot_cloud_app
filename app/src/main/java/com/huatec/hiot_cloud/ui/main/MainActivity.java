@@ -1,20 +1,15 @@
-package com.huatec.hiot_cloud.main;
+package com.huatec.hiot_cloud.ui.main;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
+
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.huatec.hiot_cloud.R;
-import com.huatec.hiot_cloud.base.BaseActivity;
-import com.huatec.hiot_cloud.base.BasePresenter;
-import com.huatec.hiot_cloud.test.mvptest.model.User;
+import com.huatec.hiot_cloud.ui.base.BaseActivity;
+import com.huatec.hiot_cloud.ui.base.BasePresenter;
 import com.huatec.hiot_cloud.utils.Constans;
 
 public class MainActivity extends BaseActivity {
@@ -23,18 +18,18 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d("tag", "test");
+
 
         //设置Viewpager
         final ViewPager vpMain = findViewById(R.id.vp_main);
-        vpMain.setAdapter(new MainViewPagerAdapter());
+        vpMain.setAdapter(new MainViewPagerAdapter(getSupportFragmentManager(),FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
         vpMain.setOffscreenPageLimit(Constans.MAIN_FRAGMENT_COUNT);
 
         RadioGroup rgMain = findViewById(R.id.rg_main);
         rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
+                switch (checkedId){
                     case R.id.rb_message:
                         vpMain.setCurrentItem(Constans.MAIN_VIEWPAGER_INDEX_MESSAGE);
                         break;
@@ -52,6 +47,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+
     }
 
     @Override
@@ -59,8 +55,10 @@ public class MainActivity extends BaseActivity {
         return null;
     }
 
+
     @Override
     public void injectIndependies() {
         getActivityComponent().inject(this);
     }
 }
+

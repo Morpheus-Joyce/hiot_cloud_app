@@ -1,4 +1,4 @@
-package com.huatec.hiot_cloud.base;
+package com.huatec.hiot_cloud.ui.base;
 
 import android.app.Application;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import com.huatec.hiot_cloud.injection.component.DaggerActivityComponent;
 import com.huatec.hiot_cloud.injection.module.ActivityModule;
 
 /**
- * MVP架构Activity基类
+ * MVP架构Acivity基类
  */
 public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V>> extends AppCompatActivity implements BaseView {
 
@@ -22,6 +22,7 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     /**
      * 活动注入器
      */
+
     private ActivityComponent mActivityComponent;
 
     @Override
@@ -29,9 +30,11 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         super.onCreate(savedInstanceState);
         injectIndependies();
         presenter = createPresenter();
-        presenter.setView((V)this);
-    }
+        if(presenter !=null){
+            presenter.setView((V) this);
+        }
 
+    }
     public abstract P createPresenter();
 
     public abstract void injectIndependies();
@@ -43,11 +46,6 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
     }
@@ -56,6 +54,12 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
     protected void onResume() {
         super.onResume();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
 
     public ActivityComponent getActivityComponent() {
         if (null == mActivityComponent) {
@@ -81,3 +85,5 @@ public abstract class BaseActivity<V extends BaseView, P extends BasePresenter<V
         return new ActivityModule(this);
     }
 }
+
+
