@@ -17,15 +17,21 @@
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".test.networktest.TestRetrofitActivity">
-
-        </activity>
-        <activity android:name=".test.networktest.TestOKHttpActivity">
+        <activity android:name=".test.networktest.TestRXjavaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".test.networktest.TestGsonActivity">
+
+        </activity>
+        <activity android:name=".test.networktest.TestRetrofitActivity">
+
+        </activity>
+        <activity android:name=".test.networktest.TestOKHttpActivity">
+
         </activity>
         <activity android:name="test.lifecycletest.TestLifeCycleActivity" />
         <activity android:name=".splash.SplashActivity"></activity>

@@ -1,5 +1,7 @@
 package com.huatec.hiot_cloud.test.networktest;
 
+import androidx.appcompat.app.AppCompatActivity;
+import android.app.DownloadManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -69,7 +71,7 @@ public class TestOKHttpActivity extends AppCompatActivity {
         btnGetUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getUserInfo("aee523cba02b4218964533167661e4e7_10db09c2b8164b4d843f1f7cff022816_use");
+                getUserInfo("47d597d6ad0f41448bc05848e2bd9f0c_65248ec1cfb649369e49e35754c4624e_use");
 
             }
         });
@@ -79,7 +81,7 @@ public class TestOKHttpActivity extends AppCompatActivity {
         btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateEmail("aee523cba02b4218964533167661e4e7_10db09c2b8164b4d843f1f7cff022816_use","zwr@qq.com");
+                updateEmail("47d597d6ad0f41448bc05848e2bd9f0c_65248ec1cfb649369e49e35754c4624e_use","zwr@qq.com");
             }
         });
     }
@@ -89,7 +91,7 @@ public class TestOKHttpActivity extends AppCompatActivity {
      * @param authorization
      * @param email
      */
-    private void updateEmail(String authorization, String email) {
+    private void updateEmail(String authorization,String email) {
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody body = new FormBody.Builder().build();
         String url = basUrl + "/user/email?email=" + email;

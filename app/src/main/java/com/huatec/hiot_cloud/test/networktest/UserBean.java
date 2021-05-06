@@ -10,8 +10,17 @@ public class UserBean implements Serializable {
      * 用户对象
      */
     private String username;
+    /**
+     * 用户邮箱
+     */
     private String email;
+    /**
+     * 用户密码
+     */
     private String password;
+    /**
+     * 用户类型
+     */
     private String userType;
 
     public String getUsername() {
