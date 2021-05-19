@@ -17,6 +17,8 @@ import retrofit2.http.Query;
  */
 public interface NetService {
 
+    public static final String BASE_URL = "http://114.67.88.191:8080";
+
     /**
      * 登录
      * @param userName
@@ -25,24 +27,26 @@ public interface NetService {
      * @return
      */
     @POST("/auth/login")
-    Observable<ResultBase<LoginResultDTO>> login(@Query("username") String userName, @Query("password") String password, @Query("loginCode") String loginCode);
+    Observable<ResultBase<LoginResultDTO>> login(@Query("username") String userName, @Query("password") String password,
+                                                 @Query("loginCode") String loginCode);
 
     /**
      * 获取用户信息
-     * @param authorizaton
+     * @param authorization
      * @return
      */
     @GET("/user/one")
-    Observable<ResultBase<UserBean>> getUserInfo(@Header("Authorization") String authorizaton);
+    Observable<ResultBase<UserBean>> getUserInfo(@Header("Authorization") String authorization);
 
     /**
      * 修改邮箱
-     * @param authorizaton
+     * @param authorization
      * @param email
      * @return
      */
     @PUT("/user/email")
-    Observable<ResultBase<String>> updateEmail(@Header("Authorization") String authorizaton, @Query("email") String email);
+    Observable<ResultBase<String>> updateEmail(@Header("Authorization") String authorization,
+                                               @Query("email") String email);
 
     /**
      * 注册
@@ -51,5 +55,4 @@ public interface NetService {
      */
     @POST("/user/register")
     Observable<ResultBase<UserBean>> register(@Body UserBean userBean);
-
 }

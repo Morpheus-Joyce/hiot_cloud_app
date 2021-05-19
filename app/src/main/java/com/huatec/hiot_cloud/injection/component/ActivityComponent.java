@@ -35,7 +35,9 @@ public interface ActivityComponent {
 
     void inject(MainActivity mainActivity);
 
-    void inject(TestMVPActivity testMVPActivity);
+    void  inject(TestMVPActivity testMVPActivity);
+
+    void inject(com.huatec.hiot_cloud.test.networktest.TestNetworkPackActivity activity);
 
     @Component.Builder
     interface ActivityComponentBuilder {

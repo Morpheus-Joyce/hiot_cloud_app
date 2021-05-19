@@ -9,17 +9,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.huatec.hiot_cloud.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.huatec.hiot_cloud.R;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -28,8 +28,9 @@ public class TestRetrofitActivity extends AppCompatActivity {
     private static final String TAG ="TestRetrofitActivity" ;
     private TestRetrofitService service;
     private Retrofit retrofit;
-    private EditText etToken;
+
     private Gson gson = new Gson();
+    private EditText etToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         userBean.setPassword("abc123");
         userBean.setUserType("1");
         Call<ResponseBody> call = service.register(userBean);
-        callEnqueue(call);
+        callEqueue(call);
     }
 
     /**
@@ -109,8 +110,8 @@ public class TestRetrofitActivity extends AppCompatActivity {
      * @param email
      */
     private void updateEmail(String authorization, String email) {
-        Call<ResponseBody> call = service.updateEmail(authorization,email);
-        callEnqueue(call);
+        Call<ResponseBody> call = service.updateEmail(authorization, email);
+        callEqueue(call);
     }
 
     /**
@@ -118,10 +119,10 @@ public class TestRetrofitActivity extends AppCompatActivity {
      * @param authorization
      */
     private void getUserInfo(String authorization) {
-//        Call<ResponseBody> call = service.getUserInfo(authorization);
-//        callEnqueueUserInfo(call);
+        //       Call<ResponseBody> call = service.getUserInfo(authorization);
+        //      callEqueueUserInfo(call);
 
-        Call<ResultBase<UserBean>>call = service.getUserInfo2(authorization);
+        Call<ResultBase<UserBean>> call = service.getUserInfo2(authorization);
         call.enqueue(new Callback<ResultBase<UserBean>>() {
             @Override
             public void onResponse(Call<ResultBase<UserBean>> call, Response<ResultBase<UserBean>> response) {
@@ -148,27 +149,26 @@ public class TestRetrofitActivity extends AppCompatActivity {
      */
     private void login(String userName, String password, String loginCode) {
         Call<ResponseBody> call = service.login(userName,password,loginCode);
-        callEnqueueLogin(call);
+        callEqueue(call);
     }
 
     /**
-     * 另一种登录接口方式
+     * 另一种登录
      * @param userName
      * @param password
      * @param loginCode
      */
     private void login2(String userName, String password, String loginCode) {
         Call<ResponseBody> call = service.login(userName,password,loginCode);
-        callEnqueue(call);
+        callEqueue(call);
     }
 
     private void test() {
         Call<ResponseBody> call = service.test();
-        callEnqueue(call);
+        callEqueue(call);
     }
 
-
-    private void callEnqueue(Call<ResponseBody> call) {
+    private void callEqueue(Call<ResponseBody> call) {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -184,9 +184,8 @@ public class TestRetrofitActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailue:" + t.getMessage(), t);
             }
         });
-
     }
-    private void callEnqueueLogin(Call<ResponseBody> call) {
+    private void callEqueueLogin(Call<ResponseBody> call) {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -205,24 +204,26 @@ public class TestRetrofitActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailue:" + t.getMessage(), t);
             }
         });
-
     }
-    private void callEnqueueUserInfo(Call<ResponseBody> call) {
+
+    private void callEqueueUserInfo(Call<ResponseBody> call) {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
 //                    Log.d(TAG, "onResponse" + response.body().string());
+                    Gson gson = new Gson();
                     Type type = new TypeToken<ResultBase<UserBean>>(){}.getType();
                     ResultBase<UserBean> resultBase = gson.fromJson(response.body().string(), type);
-                    if (resultBase != null && resultBase.getData() != null){
+                    if (resultBase != null && resultBase.getData() != null) {
                         UserBean userBean = resultBase.getData();
-                        String str = String.format("用户名：%s，密码：%s，email：%s，用户类型：%s", userBean.getUsername(),userBean.getPassword(),userBean.getEmail(),userBean.getUserType());
+                        String str = String.format("用户名：%s，密码：%s，email：%s，用户类型：%s",
+                                userBean.getUsername(), userBean.getPassword(), userBean.getEmail(), userBean.getUserType());
                         Toast.makeText(TestRetrofitActivity.this, str, Toast.LENGTH_SHORT).show();
                     }
 //                    if (resultBase != null && resultBase.getMsg() != null){
 //                        Toast.makeText(TestRetrofitActivity.this, resultBase.getMsg(), Toast.LENGTH_SHORT).show();
-//                    }
+//                  }
                 } catch (IOException e) {
                     Log.e(TAG, "onResponse" + e.getMessage(), e);
                 }
@@ -233,7 +234,6 @@ public class TestRetrofitActivity extends AppCompatActivity {
                 Log.e(TAG, "onFailue:" + t.getMessage(), t);
             }
         });
-
     }
 
     private void  createRetrofit(){

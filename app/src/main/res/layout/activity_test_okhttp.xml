@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".test.networktest.TestOKHttpActivity">
+    tools:context=".test.networktest.TestOkHttpActivity">
 
     <Button
         android:id="@+id/btn_okhttp_execute"
@@ -18,7 +18,6 @@
         android:text="enqueue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
     <Button
         android:id="@+id/btn_okhttp_login"
         android:text="登录"

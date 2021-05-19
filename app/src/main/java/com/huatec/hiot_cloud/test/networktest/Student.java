@@ -12,20 +12,11 @@ class Student implements Serializable {
      */
     private String name;
 
-    /**
-     * id
-     */
     private int id;
 
-    /**
-     * 身高
-     */
-    private int heigh;
+    private int height;
 
-    /**
-     * 是否毕业
-     */
-    private boolean graudated;
+    private boolean graduted;
 
     public String getName() {
         return name;
@@ -35,25 +26,26 @@ class Student implements Serializable {
         this.name = name;
     }
 
-    public int getHeigh() {
-        return heigh;
+    public int getHeight() {
+        return height;
     }
 
-    public void setHeigh(int heigh) {
-        this.heigh = heigh;
+    public void setHeight(int height) {
+        this.height = height;
     }
 
-    public boolean isGraudated() {
-        return graudated;
+    public boolean isGraduted() {
+        return graduted;
     }
 
-    public void setGraudated(boolean graudated) {
-        this.graudated = graudated;
+    public void setGraduted(boolean graduted) {
+        this.graduted = graduted;
     }
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
