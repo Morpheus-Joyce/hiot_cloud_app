@@ -19,11 +19,11 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
     public void login(String userName, String password) {
         subscrib(dataManager.login(userName, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
-            public void onNext(ResultBase<LoginResultDTO> resultBaes) {
-                if (resultBaes != null && resultBaes.getData() != null) {
-                    getView().showToken(resultBaes.data.getTokenValue());
-                } else if (resultBaes != null && !TextUtils.isEmpty(resultBaes.getMsg())) {
-                    getView().showMessage(resultBaes.getMsg());
+            public void onNext(ResultBase<LoginResultDTO> resultBase) {
+                if (resultBase != null && resultBase.getData() != null) {
+                    getView().showToken(resultBase.data.getTokenValue());
+                } else if (resultBase != null && !TextUtils.isEmpty(resultBase.getMsg())) {
+                    getView().showMessage(resultBase.getMsg());
                 }
 
             }
