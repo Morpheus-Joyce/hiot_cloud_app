@@ -23,7 +23,6 @@ class LoginPresenter extends BasePresenter<LoginView> {
     }
     /**
      * 登陆
-     *
      * @param email
      * @param password
      */

@@ -77,8 +77,7 @@ public class DataManager {
      * @return
      */
 
-    public Observable<ResultBase<UserBean>> register(String userName, String password, String
-            email) {
+    public Observable<ResultBase<UserBean>> register(String userName, String password, String email) {
         UserBean userBean = new UserBean();
         userBean.setUsername(userName);
         userBean.setPassword(password);
