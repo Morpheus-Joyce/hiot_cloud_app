@@ -4,6 +4,7 @@ package com.huatec.hiot_cloud.ui.base;
 import android.util.Log;
 
 import com.huatec.hiot_cloud.ui.base.BaseView;
+import com.huatec.hiot_cloud.utils.LoadingUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -19,20 +20,22 @@ public class BasePresenter<V extends BaseView> {
 
     public BasePresenter() {
     }
-    public void setView(V view){
+
+    public void setView(V view) {
         this.view = view;
     }
 
-    public V getView(){
+    public V getView() {
         return view;
     }
-    public void destroy(){
-        if (viewAttached()){
+
+    public void destroy() {
+        if (viewAttached()) {
             view = null;
         }
     }
 
-    public boolean viewAttached(){
+    public boolean viewAttached() {
         return view != null;
     }
 
@@ -82,12 +85,15 @@ public class BasePresenter<V extends BaseView> {
 
 
         public void onError(Throwable e) {
+            //对话框隐藏
+            LoadingUtil.hideLoading();
             Log.e(TAG, "onError: ", e);
 
         }
 
         public void onComplete() {
-
+            //对话框隐藏
+            LoadingUtil.hideLoading();
         }
     }
 }
