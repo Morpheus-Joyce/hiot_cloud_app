@@ -47,25 +47,21 @@ public class DataManager {
 
     /**
      * 获取用户信息
-     *
-     * @param authorizaton
      * @return
      */
 
-    public Observable<ResultBase<UserBean>> getUserInfo(String authorizaton) {
-        return service.getUserInfo(authorizaton);
+    public Observable<ResultBase<UserBean>> getUserInfo() {
+        return service.getUserInfo(sharedPreferencesHelper.getUserToken());
     }
 
     /**
      * 修改邮箱
-     *
-     * @param authorizaton
      * @param email
      * @return
      */
 
-    public Observable<ResultBase<String>> updateEmail(String authorizaton, String email) {
-        return service.updateEmail(authorizaton, email);
+    public Observable<ResultBase<String>> updateEmail(String email) {
+        return service.updateEmail(sharedPreferencesHelper.getUserToken(), email);
     }
 
     /**

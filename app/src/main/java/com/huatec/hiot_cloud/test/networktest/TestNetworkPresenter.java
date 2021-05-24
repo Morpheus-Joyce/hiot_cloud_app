@@ -32,11 +32,9 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
 
     /**
      * 获取用户信息
-     *
-     * @param authorization
      */
-    public void getUserInfo(String authorization) {
-        subscrib(dataManager.getUserInfo(authorization), new RequestCallback<ResultBase<UserBean>>() {
+    public void getUserInfo(String etToken) {
+        subscrib(dataManager.getUserInfo(), new RequestCallback<ResultBase<UserBean>>() {
             @Override
             public void onNext(ResultBase<UserBean> resultBaes) {
                 if (resultBaes != null && resultBaes.getData() != null) {
@@ -53,12 +51,10 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackView> {
 
     /**
      * 修改邮箱
-     *
-     * @param authorization
      * @param email
      */
-    public void updateEmail(String authorization, String email) {
-        subscrib(dataManager.updateEmail(authorization, email), new RequestCallback<ResultBase<String>>() {
+    public void updateEmail(String etToken, String email) {
+        subscrib(dataManager.updateEmail(email), new RequestCallback<ResultBase<String>>() {
             @Override
             public void onNext(ResultBase<String> resultBaes) {
                 if (resultBaes != null && !TextUtils.isEmpty(resultBaes.getData())) {

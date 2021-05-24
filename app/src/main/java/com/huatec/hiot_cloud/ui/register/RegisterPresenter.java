@@ -25,7 +25,6 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
 
     /**
      * 注册
-     *
      * @param userName
      * @param password
      * @param email
@@ -87,7 +86,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                getView().showMessage("当前网络无法访问，请稍后再试");
+                getView().showMessage(Constants.TOAST_MSG_NETWORK_FAIL);
             }
         });
     }

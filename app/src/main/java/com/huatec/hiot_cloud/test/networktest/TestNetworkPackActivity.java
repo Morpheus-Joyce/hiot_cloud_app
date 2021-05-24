@@ -24,6 +24,7 @@ public class TestNetworkPackActivity extends BaseActivity implements TestNetwork
 
     @Inject
     DataManager dataManager;
+
     @Inject
     TestNetworkPresenter presenter;
 
@@ -90,7 +91,6 @@ public class TestNetworkPackActivity extends BaseActivity implements TestNetwork
 
     /**
      * 登入方法
-     *
      * @param userName
      * @param password
      */
