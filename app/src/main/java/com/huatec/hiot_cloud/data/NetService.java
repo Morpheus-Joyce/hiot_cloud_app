@@ -5,11 +5,14 @@ import com.huatec.hiot_cloud.test.networktest.ResultBase;
 import com.huatec.hiot_cloud.test.networktest.UserBean;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -55,4 +58,14 @@ public interface NetService {
      */
     @POST("/user/register")
     Observable<ResultBase<UserBean>> register(@Body UserBean userBean);
+
+    /**
+     * 修改头像
+     * @param file
+     * @param authorization
+     * @return
+     */
+    @POST("/user/img")
+    @Multipart
+    Observable<ResultBase<String>> uploadImage(@Part MultipartBody.Part file, @Header("Authorization") String authorization);
 }

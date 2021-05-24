@@ -5,7 +5,7 @@ package com.huatec.hiot_cloud.utils;
  */
 public class Constants {
     /**
-     *
+     * 主页fragment选择序号
      */
     public static final  int MAIN_FRAGMENT_COUNT = 4;
 
@@ -15,15 +15,15 @@ public class Constants {
     public static final  int MAIN_VIEWPAGER_INDEX_MESSAGE = 0;
 
     /**
-     *
+     * 主页viewpager的设备fragment选择序号
      */
     public static final  int MAIN_VIEWPAGER_INDEX_EQUIPMENT= 1;
     /**
-     *
+     * 主页viewpager的场景fragment选择序号
      */
     public static final  int MAIN_VIEWPAGER_INDEX_SCENE= 2;
     /**
-     *
+     * 主页viewpager的我的fragment选择序号
      */
     public static final  int MAIN_VIEWPAGER_INDEX_MINE = 3;
     /**
@@ -38,9 +38,12 @@ public class Constants {
      * 服务端返回消息状态属性成功
      */
     public static final int MSG_STATUS_SUCCESS = 1;
-
     /**
      * 网络访问失败吐司
      */
     public static final String TOAST_MSG_NETWORK_FAIL = "当前网络无法访问，请稍后再试";
+    /**
+     * form_data类型
+     */
+    public static final String MULTIPART_FORM_DATA = "multipart/form-data";
 }

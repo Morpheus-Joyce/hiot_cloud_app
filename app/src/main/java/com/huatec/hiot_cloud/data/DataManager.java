@@ -5,10 +5,15 @@ import com.huatec.hiot_cloud.test.networktest.ResultBase;
 import com.huatec.hiot_cloud.test.networktest.UserBean;
 import com.huatec.hiot_cloud.utils.Constants;
 
+import java.io.File;
+
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.functions.Consumer;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * 网络请求封装类
@@ -80,6 +85,17 @@ public class DataManager {
         userBean.setEmail(email);
         userBean.setUserType(Constants.REGISTER_TYPE_NORMAL);
         return service.register(userBean);
+    }
+
+    /**
+     * 上传图片
+     * @param filePath
+     */
+    public Observable<ResultBase<String>> uploadImage(String filePath) {
+        File file = new File(filePath);
+        RequestBody requestBody = RequestBody.create(MediaType.parse(Constants.MULTIPART_FORM_DATA),file);
+        MultipartBody.Part multipartFile = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+        return service.uploadImage(multipartFile, sharedPreferencesHelper.getUserToken());
     }
 }
 
