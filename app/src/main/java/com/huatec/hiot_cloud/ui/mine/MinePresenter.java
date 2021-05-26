@@ -1,7 +1,5 @@
 package com.huatec.hiot_cloud.ui.mine;
 
-import android.text.TextUtils;
-
 import com.huatec.hiot_cloud.data.DataManager;
 import com.huatec.hiot_cloud.test.networktest.ResultBase;
 import com.huatec.hiot_cloud.test.networktest.UserBean;
@@ -33,6 +31,11 @@ public class MinePresenter extends BasePresenter<MineView> {
                     getView().showMessage("服务器开小差了，请稍后再试");
                     return;
                 }
+                //如果token失效
+                if (resultBase.getStatus() == Constants.MSG_STATUS_TOKEN_OUT) {
+                    getView().tokenOut();
+                    return;
+                }
                 if (resultBase.getStatus() != Constants.MSG_STATUS_SUCCESS) {
                     getView().showMessage(resultBase.getMsg());
                     return;
@@ -59,6 +62,11 @@ public class MinePresenter extends BasePresenter<MineView> {
                     getView().showMessage("服务器开小差了，请稍后再试");
                     return;
                 }
+                //如果token失效
+                if (resultBase.getStatus() == Constants.MSG_STATUS_TOKEN_OUT) {
+                    getView().tokenOut();
+                    return;
+                }
                 if (resultBase.getStatus() != Constants.MSG_STATUS_SUCCESS) {
                     getView().showMessage(resultBase.getMsg());
                     return;
@@ -67,6 +75,32 @@ public class MinePresenter extends BasePresenter<MineView> {
                 String url = resultBase.getData();
                 //刷新用户头像
                 getView().refreshUserHead(url);
+            }
+        });
+    }
+
+    /**
+     * 注销
+     */
+    public void logout() {
+        subscrib(dataManager.logout(), new RequestCallback<ResultBase>() {
+            @Override
+            public void onNext(ResultBase resultBase) {
+                if (resultBase == null) {
+                    getView().showMessage("服务器开小差了，请稍后再试");
+                    return;
+                }
+                //如果token失效
+                if (resultBase.getStatus() == Constants.MSG_STATUS_TOKEN_OUT) {
+                    getView().tokenOut();
+                    return;
+                }
+                if (resultBase.getStatus() != Constants.MSG_STATUS_SUCCESS) {
+                    getView().showMessage(resultBase.getMsg());
+                    return;
+                }
+                //如果返回成功，打开登录界面
+                getView().tokenOut();
             }
         });
     }

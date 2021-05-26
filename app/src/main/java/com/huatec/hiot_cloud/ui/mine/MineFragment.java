@@ -18,6 +18,7 @@ import com.huatec.hiot_cloud.R;
 import com.huatec.hiot_cloud.test.networktest.UserBean;
 import com.huatec.hiot_cloud.ui.base.BaseActivity;
 import com.huatec.hiot_cloud.ui.base.BaseFragment;
+import com.huatec.hiot_cloud.ui.login.LoginActivity;
 import com.huatec.hiot_cloud.utils.ImageUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -106,6 +107,8 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
             case R.id.tv_user_center_update_email:
                 break;
             case R.id.btn_logout:
+                //注销
+                presenter.logout();
                 break;
         }
     }
@@ -132,7 +135,6 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
                         showMessage("用户拒绝授权");
                     }
                 }
-
         );
     }
 
@@ -186,10 +188,10 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Activity.RESULT_CANCELED) {
+        if (resultCode == Activity.RESULT_CANCELED) {
             showMessage("用户取消");
         }
-        if (requestCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PictureConfig.CHOOSE_REQUEST) {
                 List<LocalMedia> ImageList = PictureSelector.obtainMultipleResult(data);
                 if (ImageList != null && !ImageList.isEmpty()) {
@@ -218,5 +220,15 @@ public class MineFragment extends BaseFragment<MineView, MinePresenter> implemen
     @Override
     public void refreshUserHead(String url) {
         ImageUtils.showCircle(getActivity(), ivHeadImage, ImageUtils.getFullUrl(url));
+    }
+
+    /**
+     * 重新登录
+     */
+    @Override
+    public void tokenOut() {
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }

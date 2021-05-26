@@ -67,7 +67,6 @@ public class RegisterActivity extends BaseActivity<RegisterView, RegisterPresent
 
     /**
      * 校验用户输入
-     *
      * @param userName
      * @param email
      * @param password

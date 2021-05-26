@@ -34,6 +34,14 @@ public interface NetService {
                                                  @Query("loginCode") String loginCode);
 
     /**
+     * 注销
+     * @param authorization
+     * @return
+     */
+    @POST("/auth/logout")
+    Observable<ResultBase> logout(@Header("Authorization") String authorization);
+
+    /**
      * 获取用户信息
      * @param authorization
      * @return
